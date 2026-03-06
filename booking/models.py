@@ -9,4 +9,4 @@ class Slot(models.Model):
 
     class Meta:
         db_table = "booking_slot"
-        managed = False
+    

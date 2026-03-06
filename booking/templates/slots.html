@@ -4,8 +4,6 @@
 
 {% block content %}
 
-<!-- SEARCH BOX -->
-
 <form method="GET">
 
 <div class="container mb-5">
@@ -20,7 +18,7 @@
 <option value="">All Services</option>
 <option value="Consultation">Consultation</option>
 <option value="Workshop">Workshop</option>
-<option value="Fitness Class">Fitness Class</option>
+<option value="Fitness Training">Fitness Training</option>
 <option value="Yoga Class">Yoga Class</option>
 </select>
 </div>
@@ -50,8 +48,6 @@
 </form>
 
 
-<!-- AVAILABLE SLOTS -->
-
 <div class="container">
 
 <h4 class="fw-bold mb-4 text-black">
@@ -59,6 +55,8 @@
 </h4>
 
 <div class="row g-4">
+
+{% if slots %}
 
 {% for slot in slots %}
 
@@ -108,13 +106,15 @@ Fully Booked
 
 </div>
 
-{% empty %}
+{% endfor %}
+
+{% else %}
 
 <div class="alert alert-warning">
 No slots available
 </div>
 
-{% endfor %}
+{% endif %}
 
 </div>
 
