@@ -1,1 +1,1 @@
-gunicorn slotbooking.wsgi
+web: gunicorn slotbooking.wsgi
