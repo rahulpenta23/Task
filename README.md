@@ -60,7 +60,7 @@ slotbooking/
 ### Clone the repository
 
 
-git clone https://github.com/yourusername/slotbooking.git
+git clone https://github.com/rahulpenta23/Task.git
 
 cd slotbooking
 
