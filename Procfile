@@ -1,1 +1,1 @@
-web: gunicorn slotbooking.wsgi
+web: gunicorn slotbooking.wsgi --bind 0.0.0.0:$PORT
