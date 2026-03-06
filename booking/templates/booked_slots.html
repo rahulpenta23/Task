@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Booked Slots{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4 text-primary">
+<i class="bi bi-list-check"></i> Booked Slots
+</h2>
+
+<div class="list-group">
+
+{% for slot in slots %}
+
+<div class="list-group-item d-flex justify-content-between align-items-center">
+
+<div>
+<strong>{{ slot.name }}</strong>
+<div class="text-muted small">{{ slot.time }}</div>
+</div>
+
+<span class="badge bg-danger">Booked</span>
+
+</div>
+
+{% empty %}
+
+<div class="alert alert-info">
+No slots booked yet
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

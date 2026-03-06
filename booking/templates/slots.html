@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Available Slots{% endblock %}
+
+{% block content %}
+
+<!-- SEARCH BOX -->
+
+<form method="GET">
+
+<div class="container mb-5">
+
+<div class="search-box p-4 shadow-sm rounded bg-white">
+
+<div class="row g-3 align-items-end">
+
+<div class="col-md-5">
+<label class="form-label fw-bold">Service</label>
+<select class="form-select" name="service">
+<option value="">All Services</option>
+<option value="Consultation">Consultation</option>
+<option value="Workshop">Workshop</option>
+<option value="Fitness Class">Fitness Class</option>
+<option value="Yoga Class">Yoga Class</option>
+</select>
+</div>
+
+<div class="col-md-5">
+<label class="form-label fw-bold">Time</label>
+<select class="form-select" name="time">
+<option value="">Any Time</option>
+<option value="Morning">Morning</option>
+<option value="Afternoon">Afternoon</option>
+<option value="Evening">Evening</option>
+</select>
+</div>
+
+<div class="col-md-2">
+<button type="submit" class="btn btn-primary w-100">
+<i class="bi bi-search me-2"></i>Search
+</button>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</form>
+
+
+<!-- AVAILABLE SLOTS -->
+
+<div class="container">
+
+<h4 class="fw-bold mb-4 text-black">
+<i class="bi bi-calendar2-week me-2"></i> Available Slots
+</h4>
+
+<div class="row g-4">
+
+{% for slot in slots %}
+
+<div class="col-md-4">
+
+<div class="card shadow-sm border-0 h-100">
+
+<div class="card-header bg-primary text-white d-flex justify-content-between">
+
+<span>
+<i class="bi bi-clock"></i> {{ slot.time }}
+</span>
+
+{% if slot.is_booked %}
+<span class="badge bg-danger">Booked</span>
+{% else %}
+<span class="badge bg-success">Available</span>
+{% endif %}
+
+</div>
+
+<div class="card-body">
+
+<h5 class="card-title fw-bold">{{ slot.name }}</h5>
+
+<p class="text-muted small">
+Book this slot before it gets filled.
+</p>
+
+{% if slot.is_booked %}
+
+<button class="btn btn-secondary w-100" disabled>
+Fully Booked
+</button>
+
+{% else %}
+
+<a href="{% url 'book_slot' slot.id %}" class="btn btn-primary w-100">
+<i class="bi bi-check-circle"></i> Book Now
+</a>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="alert alert-warning">
+No slots available
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+{% endblock %}

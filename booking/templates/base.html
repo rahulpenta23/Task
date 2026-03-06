@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>{% block title %}Slot Booking{% endblock %}</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+<style>
+
+body{
+    background-image: url("https://images.unsplash.com/photo-1506784983877-45594efa4cbe");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.page-container{
+    background: rgba(255,255,255,0.95);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.card{
+    transition: 0.3s;
+}
+
+.card:hover{
+    transform: translateY(-5px);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark bg-primary shadow">
+<div class="container">
+
+<a class="navbar-brand fw-bold" href="/">
+<i class="bi bi-calendar-check"></i> Slot Booking
+</a>
+
+<a class="btn btn-light" href="/booked/">
+<i class="bi bi-list-check"></i> Booked Slots
+</a>
+
+</div>
+</nav>
+
+<div class="container mt-5 page-container">
+{% block content %}{% endblock %}
+</div>
+
+</body>
+</html>
