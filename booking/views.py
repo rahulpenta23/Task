@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Slot
 
 
-# View function to display all available slots
+# View to display slots
 def view_slots(request):
 
     slots = Slot.objects.all()
@@ -13,24 +13,31 @@ def view_slots(request):
     if service:
         slots = slots.filter(name=service)
 
-    if time:
-        slots = slots.filter(time__icontains=time)
+    if time == "Morning":
+        slots = slots.filter(time__icontains="AM")
+
+    elif time == "Afternoon":
+        slots = slots.filter(time__icontains="PM")
+
+    elif time == "Evening":
+        slots = slots.filter(time__icontains="PM")
 
     return render(request, "slots.html", {"slots": slots})
 
 
-# View function to book a slot
+# View to book a slot
 def book_slot(request, slot_id):
 
     slot = get_object_or_404(Slot, id=slot_id)
 
-    slot.is_booked = True
-    slot.save()
+    if not slot.is_booked:   # prevents double booking
+        slot.is_booked = True
+        slot.save()
 
     return redirect("view_slots")
 
 
-# View function to display booked slots
+# View to display booked slots
 def booked_slots(request):
 
     slots = Slot.objects.filter(is_booked=True)
